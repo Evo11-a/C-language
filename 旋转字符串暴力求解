@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+void left_move(char arr[],int k)
+{
+	assert(arr!=NULL);//防止野指针 
+	int i,j=0;
+	int len=strlen(arr);
+	for(j=0;j<k;j++)
+	{
+	//左旋转一个字符 
+	char tmp=*arr;
+	for(i=0;i<len-1;i++)//len-1防止数组越界访问 
+	{
+		*(arr+i)=*(arr+1+i);//j将剩下的字符向前移动 
+	}
+	*(arr+len-1)=tmp; 
+    }
+}
+int main()
+{
+	int k;
+	scanf("%d",&k);
+	char arr[]="abcdef";
+	left_move(arr,k);
+	printf("%s\n",arr);
+} 
