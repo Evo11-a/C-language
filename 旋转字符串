@@ -4,6 +4,8 @@
 //逆转函数 
 void reverse(char*left,char*right)
 {
+        assert(left!=NULL);
+        assert(right!=NULL);
 	while(left<right)
 	{
 	char tmp=*left;
@@ -28,6 +30,8 @@ int main()
 {
 	int k;
 	scanf("%d",&k);
+        int len=strlen(arr);
+        assert(k<=len);
 	char arr[]="abcdef";
 	left_move(arr,k);
 	printf("%s\n",arr);
