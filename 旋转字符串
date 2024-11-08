@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+//逆转函数 
+void reverse(char*left,char*right)
+{
+	while(left<right)
+	{
+	char tmp=*left;
+	*left=*right;
+	*right=tmp;
+	left++;
+	right--;
+    }
+}
+void left_move(char arr[],int k)
+{
+	assert(arr!=NULL);
+	int len=strlen(arr);
+	//逆序左边的字符
+	reverse(arr,arr+k-1);
+	//逆序右边的字符 
+	reverse(arr+k,arr+len-1);
+	//整体逆序
+	reverse(arr,arr+len-1); 
+}
+int main()
+{
+	int k;
+	scanf("%d",&k);
+	char arr[]="abcdef";
+	left_move(arr,k);
+	printf("%s\n",arr);
+} 
