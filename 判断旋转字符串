@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+//逆转函数 
+void reverse(char*left,char*right)
+{
+	while(left<right)
+	{
+	char tmp=*left;
+	*left=*right;
+	*right=tmp;
+	left++;
+	right--;
+    }
+}
+void left_move(char arr[],int k)
+{
+	assert(arr!=NULL);
+	int len=strlen(arr);
+	//逆序左边的字符
+	reverse(arr,arr+k-1);
+	//逆序右边的字符 
+	reverse(arr+k,arr+len-1);
+	//整体逆序
+	reverse(arr,arr+len-1); 
+}
+int is_left(char*arr1,char*arr2)
+{
+	int i=0;
+	int len=strlen(arr1);
+	for(i=0;i<len;i++)
+	{
+		left_move(arr1,1);//每次旋转一个 
+		int ret=strcmp(arr1,arr2);
+		if(ret==0)
+		return 1;
+	}
+	//将所有情况比较完后确定是否不相同 
+	return 0;
+}
+int main()
+{
+	char arr1[]="abcdef";
+	char arr2[]="cdefab";
+	int ret=is_left(arr1,arr2);
+	if(ret==1)
+	{
+		printf("Yes\n");
+	}
+	else
+	{
+		printf("No\n"); 
+	}
+} 
