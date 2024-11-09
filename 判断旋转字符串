@@ -59,6 +59,10 @@ int main()
 #include <string.h>
 int is_left(char*arr1,char*arr2)
 {
+        int len1=strlen(arr1);
+        int len2=srelen(arr2);
+        if(len1!=len2)
+        return 0;
 	//先在arr1字符串后追加一个arr1字符串 
 	strncat(arr1,arr1,6);
 	//判断arr2指向的字符串是否是arr1指向字符串的子串
