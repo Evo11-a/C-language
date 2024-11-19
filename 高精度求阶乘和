@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int a[1000]={0};//储存阶乘
+	int b[1000]={0};//储存阶乘和
+	int n;
+	int c=0;//储存进位 
+	scanf("%d",&n); 
+	int len=1;
+	for(int i=1;i<=n;i++)
+	{
+		len=1;
+		a[1]=1;//初始化阶乘（1的阶乘为1）
+		//求阶乘 
+	    for(int j=1;j<=i;j++)	
+	    {
+	    	c=0;
+	    	for(int k=1;k<=len;k++)
+	    	{
+	    		a[k]=a[k]*j+c;//ret*=i（求阶乘） 
+	    	    c=a[k]/10;
+	    	    a[k]%=10;
+			}
+			while(c)
+			{
+				a[++len]=c%10;
+				c/=10;
+			}
+		}
+			//求阶乘和
+		 c=0;
+		 for(int j=1;j<=len;j++)
+	    {
+	    	b[j]=b[j]+a[j]+c;//sum+=num(阶乘)
+	    	c=b[j]/10;
+	    	b[j]%=10;
+		}
+		if(c>0)
+	    {
+	 	    b[++len]=c;	
+	    }
+	} 
+	for(int i=len;i>=1;i--)
+	{
+	   printf("%d",b[i]);
+	}
+	return 0;
+} 
