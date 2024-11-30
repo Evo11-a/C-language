@@ -1,0 +1,50 @@
+#include <stdio.h>
+#define Max 2001
+int fa[Max];
+void init(int n)//初始化父节点 
+{
+	for(int i=1;i<=n;i++)
+	{
+		fa[i]=i;
+	}
+}
+int find(int n)//查找父节点 
+{
+	if(n==fa[n])
+	{
+		return n;
+	}
+	else
+	{
+		fa[n]=find(fa[n]);//运用递归将父节点设为根节点,路径压缩 
+		return fa[n]; 
+	} 
+}
+void unite(int i,int j)//整合 
+{
+	int i_fa=find(i);//找到i的祖先 
+	int j_fa=find(j);//找到j的祖先 
+	fa[i_fa]=fa[j_fa];//i的祖先指向j的祖先 
+}
+int main()
+{
+    int n,m;
+    scanf("%d",&n);
+    init(n); 
+    scanf("%d",&m);
+    int x,y;
+    for(int i=0;i<m;i++)
+    {
+        scanf("%d %d",&x,&y);
+        unite(x,y);
+    }
+    if(find(1)==n)
+    {
+    	printf("YES\n");
+	}
+	else
+	{
+		printf("NO\n");
+	}
+    return 0;
+}
