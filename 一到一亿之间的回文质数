@@ -1,0 +1,63 @@
+#include <stdio.h>
+int is_reverse(long long n)//判断回文 
+{
+    int a[20];
+	int flag = 1;
+	while (n > 0)
+	{
+		a[flag] = n % 10;
+		n /= 10;
+		flag++;
+	} 
+	for (int i = 1; i <= flag / 2; i++)
+		if(a[i] != a[flag-i]) 
+		{
+			return 0;
+		}
+	return 1;
+}
+int is_prime(long long n)//判断质数 
+{
+
+    if (n < 2) return 0;
+    if (n == 2 || n == 3) return 1; // 2和3是质数
+    if (n % 2 == 0 || n % 3 == 0) return 0;
+    //6k,6k+2,6k+3,6k+4都不是质数，且能被2或3整除，6k+1,6k+5为质数，不能被2或3整除 
+    for (long long i = 5; i * i <= n; i += 6)
+    {
+    	//i+2跳过偶数 
+        if (n % i == 0 || n % (i + 2) == 0)//6k+1除以3余1，6k+5除以3余2
+		{
+            return 0;
+        }
+    }
+    return 1;
+}
+int ws(long long k)  //检查位数，除了11没有偶数位的回文质数 
+    {
+        if(k>=10 && k<100 && k!=11 || k>=1000 && k<10000)return 0;
+        if(k>=100000 && k<1000000)return 0;
+        return 1;
+    }
+int main()
+{
+    long long a,b;
+	scanf("%lld %lld",&a,&b);
+	if(a==2)
+	{
+		printf("2\n");
+	}
+	if(a%2==0)
+	{
+		a++;
+	}
+	b=(b<9999999)?b:9999999;
+	for(long long i = (a == 2) ? 3 : a;i<=b;i+=2)
+	{
+	    if(is_reverse(i)==0)continue;
+	    if(is_prime(i)==0)continue;
+	    if(ws==0)continue;
+	    printf("%lld\n",i);
+	} 
+    return 0;
+}
